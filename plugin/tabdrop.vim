@@ -24,7 +24,11 @@ function! s:TabDropHelper(file, here)
 endfunction
 
 function! s:TabDrop(file)
-  call s:TabDropHelper(a:file, 0)
+  if exists(":tab drop")
+    exec "tab drop " . a:file
+  else
+    call s:TabDropHelper(a:file, 0)
+  end
 endfunction
 
 function! s:TabDropHere(file)
